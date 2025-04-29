@@ -38,7 +38,10 @@ app.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
+
+app.use('/area', require('./routes/area'));
 app.use('/units', require('./routes/units'));
+app.use('/vendors', require('./routes/vendor'));
 app.use('/categories', require('./routes/category'));
 app.use('/subCategories', require('./routes/subCategory'));
 app.use('/brands', require('./routes/brand'));

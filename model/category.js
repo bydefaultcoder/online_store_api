@@ -5,4 +5,14 @@ const categorySchema = new mongoose.Schema({
     image: { type: String, required: true }
 }, { timestamps: true });
 
+// Cascading delete
+categorySchema.pre('deleteOne', { document: true, query: false }, async function(next) {
+    try {
+      await SubCategory.deleteMany({ category: this._id });
+      next();
+    } catch (err) {
+      next(err);
+    }
+});
+
 module.exports = mongoose.model('Category', categorySchema);

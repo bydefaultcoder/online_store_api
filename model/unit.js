@@ -48,9 +48,7 @@ UnitSchema.pre('save', async function(next) {
       if (!baseUnit) {
         return next(new Error('Base unit not found'));
       }
-      if (baseUnit.type !== this.type) {
-        return next(new Error('Base unit must be of the same type'));
-      }
+
     }
     next();
   });

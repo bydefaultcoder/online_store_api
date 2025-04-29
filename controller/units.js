@@ -21,18 +21,6 @@ exports.createUnit =asyncHandler( async (req, res) => {
     });
   }
   try {
-
-    if (value.base_unit) {
-        const baseUnitExists = await Unit.findById(value.base_unit);
-        if (!baseUnitExists) {
-            return res.status(400).json({ success: false, message: 'Base unit not found', data: null });
-        }
-
-        // Optional: Check if types match
-        if (baseUnitExists.type !== value.type) {
-            return res.status(400).json({ success: false, message: 'Base unit type must match', data: null });
-        }
-        }
     const unit = new Unit(value);
     await unit.save();
     res.status(201).json(unit);
